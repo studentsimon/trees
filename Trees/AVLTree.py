@@ -154,7 +154,7 @@ class AVLTree():
 
 
 
-   def is_bst_satisfied(self):
+    def is_bst_satisfied(self):
         '''
         Whenever you implement a data structure,
         the first thing to do is to implement a function that checks whether
@@ -162,9 +162,9 @@ class AVLTree():
         This makes it possible to automatically test whether insert/delete functions
         are actually working.
         '''
-        if self.root:
-            return BST._is_bst_satisfied(self.root)
-        return True
+         if self.root:
+             return BST._is_bst_satisfied(self.root)
+         return True
 
 
 
