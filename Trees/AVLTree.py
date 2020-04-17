@@ -149,6 +149,25 @@ class AVLTree():
 
             return node
 
+
+
+
+
+
+   def is_bst_satisfied(self):
+        '''
+        Whenever you implement a data structure,
+        the first thing to do is to implement a function that checks whether
+        the structure obeys all of its laws.
+        This makes it possible to automatically test whether insert/delete functions
+        are actually working.
+        '''
+        if self.root:
+            return BST._is_bst_satisfied(self.root)
+        return True
+
+
+
     @staticmethod
     def _insert(value, node):
 
