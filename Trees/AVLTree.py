@@ -176,17 +176,6 @@ class AVLTree():
             return node
 
 
-#new
-
-from Trees.BinaryTree import BinaryTree, Node
-
-class BST(BinaryTree):
-    '''
-    FIXME:
-    BST is currently not a subclass of BinaryTree.
-    You should make the necessary changes in the class declaration line above 
-    and in the constructor below.
-    '''
 
     def __init__(self, xs=None):
         '''
