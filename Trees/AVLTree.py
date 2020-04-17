@@ -162,9 +162,9 @@ class AVLTree():
         This makes it possible to automatically test whether insert/delete functions
         are actually working.
         '''
-         if self.root:
-             return BST._is_bst_satisfied(self.root)
-         return True
+        if self.root:
+            return BST._is_bst_satisfied(self.root)
+        return True
 
 
 
