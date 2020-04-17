@@ -662,6 +662,3 @@ class BST(BinaryTree):
         for i in xs:
             self.remove(i)
 
-
-
-            
