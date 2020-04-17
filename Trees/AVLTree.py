@@ -13,7 +13,6 @@ class AVLTree(BST):
     You should make the necessary changes in the class declaration line above 
     and in the constructor below.
     '''
-
     def __init__(self, xs=None):
         '''
         FIXME:
@@ -22,8 +21,6 @@ class AVLTree(BST):
         self.root = None
         if xs:
             self.insert_list(xs)
-
-
     def balance_factor(self):
         '''
         Returns the balance factor of a tree.
@@ -94,7 +91,6 @@ class AVLTree(BST):
         '''
         if node is None or node.left is None:
             return node
-
         new_node = Node(node.left.value)
         new_node.left = node.left.left
 
@@ -133,7 +129,6 @@ class AVLTree(BST):
 
         for elem in xs:
             self.insert(elem)
-
             print(elem, self.root)
 
     @staticmethod
@@ -143,6 +138,7 @@ class AVLTree(BST):
 
             if AVLTree._balance_factor(node.left) < 0:
                 node.left=AVLTree._left_rotate(node.left)
+
                 return AVLTree._right_rotate(node)
 
             else:
@@ -151,27 +147,36 @@ class AVLTree(BST):
         elif AVLTree._balance_factor(node) < -1:
 
             if AVLTree._balance_factor(node.right) > 0:
+
                 node.right=AVLTree._right_rotate(node.right)
+
                 return AVLTree._left_rotate(node)
+
 
             else:
                 return AVLTree._left_rotate(node)
         else:
 
             return node
-
-
     @staticmethod
     def _insert(value,node):
 
         if value < node.value:
+
             if node.left is None:
+
                 node.left = Node(value)
+
             else:
+
                 AVLTree._insert(value, node.left)
+
         elif value > node.value:
+
             if node.right is None:
+
                 node.right = Node(value)
+
             else:
                 AVLTree._insert(value, node.right)
         else:
@@ -179,9 +184,14 @@ class AVLTree(BST):
 
 
         if not AVLTree._is_avl_satisfied(node):
+
             node.left = AVLTree._rebalance(node.left)
+
             node.right = AVLTree._rebalance(node.right)
+
             return AVLTree._rebalance(node)
+
         else:
+
             return node
 
