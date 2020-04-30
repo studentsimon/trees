@@ -86,23 +86,11 @@ class Heap(BinaryTree):
 
     @staticmethod
     def _insert(value, node):
-        '''
-        FIXME:
-        Implement this function.
-        '''
         #_input function created below
-
-
-
         Heap._input(value, node)
 
-
-    @staticmethod
+    @staticmethod #helper function for above
     def _input(value, node):
-        '''
-        FIXME:
-        Implement this function.
-        '''
         if node.left is None:
             new_node = Node(value)
             node.left = new_node
@@ -110,18 +98,15 @@ class Heap(BinaryTree):
         elif node.right is None:
             new_node = Node(value)
             node.right = new_node
-
         else:
             left = Heap.s1(node.left)
             right = Heap.s1(node.right)
             new_node = node.left if left <= right else node.right
             new_node = Heap._input(value, new_node)
-
         if new_node.value < node.value:
             tmp = new_node.value
             new_node.value = node.value
             node.value = tmp
-
         return node
 
 
@@ -131,10 +116,8 @@ class Heap(BinaryTree):
         FIXME:
         Implement this function.
         '''
-
-        for x in xs:
-            self.insert(x)
-
+        for element in xs:
+            self.insert(element)
 
     def find_smallest(self):
         '''
@@ -147,6 +130,9 @@ class Heap(BinaryTree):
         Create a recursive staticmethod helper function,
         similar to how the insert and find functions have recursive helpers.
         '''
+        #recursive method @is_heap_satisfied (had help from Shashank on this area)
+
+
         if Heap.is_heap_satisfied(self):
             return self.root.value
 
@@ -154,14 +140,8 @@ class Heap(BinaryTree):
 
 
     def remove_min(self):
-        '''
-        Removes the minimum value from the Heap. 
-        If the heap is empty, it does nothing.
-        FIXME:
-        Implement this function.
-        '''
-
-        if self.root is None or (self.root.left is None and self.root.right is None):
+        
+        if self.root is None or (self.root.right is None and self.root.left is None):
             self.root = None
             return self.root
 
@@ -191,9 +171,9 @@ class Heap(BinaryTree):
     def _alt_solution(node):
         if node.left is None or node.right is None:
             pass
-        elif node.left.value == "alt method":
+        elif node.left.value == "alt":
             node.left = None
-        elif node.right.value == "alt method":
+        elif node.right.value == "alt":
             node.right = None
         else:
             left = Heap.s1(node.left)
@@ -206,7 +186,7 @@ class Heap(BinaryTree):
     @staticmethod
     def _find_last_val(node):
         if node.right is None and node.left is None:
-            node.value = "alt method"
+            node.value = "alt"
             return node
         elif node.right is None:
             node.left = None
