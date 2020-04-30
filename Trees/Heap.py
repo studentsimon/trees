@@ -89,9 +89,8 @@ class Heap(BinaryTree):
         FIXME:
         Implement this function.
         '''
-        #using helper defined below
-
         Heap._input(value, node)
+
 
     @staticmethod
     def size(node):
@@ -145,8 +144,6 @@ class Heap(BinaryTree):
         FIXME:
         Implement this function.
         '''
-        #do a basic for loop here
-
 
         for x in xs:
             self.insert(x)
@@ -163,9 +160,6 @@ class Heap(BinaryTree):
         Create a recursive staticmethod helper function,
         similar to how the insert and find functions have recursive helpers.
         '''
-        #helper function???
-
-
         if Heap.is_heap_satisfied(self):
             return self.root.value
 
@@ -185,12 +179,9 @@ class Heap(BinaryTree):
         Implement this function.
         '''
 
-        #if self.root isn't none and left and right isn't none return replace. ask vik?
-
         if self.root is None or (self.root.left is None and self.root.right is None):
             self.root = None
             return self.root
-
 
         else:
             return Heap._replace(self.root)
@@ -216,14 +207,11 @@ class Heap(BinaryTree):
 
     @staticmethod
     def _alt_solution(node):
-
-
-
-        if node.right is None or node.left is None:
+        if node.left is None or node.right is None:
             pass
-        elif node.right.value == "alt":
+        elif node.left.value == "alt method":
             node.left = None
-        elif node.left.value == "alt":
+        elif node.right.value == "alt method":
             node.right = None
         else:
             left = Heap.size(node.left)
@@ -236,7 +224,7 @@ class Heap(BinaryTree):
     @staticmethod
     def _find_last_val(node):
         if node.right is None and node.left is None:
-            node.value = "alt"
+            node.value = "alt method"
             return node
         elif node.right is None:
             node.left = None
@@ -256,12 +244,12 @@ class Heap(BinaryTree):
         Heap._find_last_val(node)
         node.value = val
         Heap._alt_solution(node)
-        Heap.td1(node.value, node)
+        Heap._trickle_down(node.value, node)
 
         return node
 
     @staticmethod
-    def td1(value, node):
+    def _trickle_down(value, node):
         if Heap._is_heap_satisfied(node):
             return
         else:
@@ -280,10 +268,10 @@ class Heap(BinaryTree):
                     tmp_node = node.value
                     node.value = node.left.value
                     node.left.value = tmp_node
-                    return Heap.td1(value, node.left)
+                    return Heap._trickle_down(value, node.left)
 
                 else:
                     tmp_node = node.value
                     node.value = node.right.value
                     node.right.value = tmp_node
-                    return Heap.td1(value, node.right)
+                    return Heap._trickle_down(value, node.right)
