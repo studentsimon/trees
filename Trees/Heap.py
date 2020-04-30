@@ -1,6 +1,3 @@
-'''
-'''
-
 from Trees.BinaryTree import BinaryTree, Node
 
 class Heap(BinaryTree):
@@ -17,7 +14,7 @@ class Heap(BinaryTree):
         If xs is a list (i.e. xs is not None),
         then each element of xs needs to be inserted into the Heap.
         '''
-
+        #insert all elements into the heap
         self.root = None
         if xs:
             self.insert_list(xs)
@@ -47,6 +44,7 @@ class Heap(BinaryTree):
         This makes it possible to automatically test whether insert/delete functions
         are actually working.
         '''
+        #use function below to validate the heap!
         if self.root:
             return Heap._is_heap_satisfied(self.root)
         return True
@@ -59,13 +57,15 @@ class Heap(BinaryTree):
         The lecture videos have the exact code you need,
         except that their method is an instance method when it should have been a static method.
         '''
+        #concepts from lecture notes 
+
         if node is None or (node.left is None and node.right is None):
             return True
 
         elif node.right is None:
             return node.value <= node.left.value
 
-        elif node.value <= node.left.value and node.value <= node.right.value:
+        elif node.value <= node.right.value and node.value <= node.left.value:
             return Heap._is_heap_satisfied(node.left) and Heap._is_heap_satisfied(node.right)
 
         else:
@@ -76,6 +76,7 @@ class Heap(BinaryTree):
         '''
         Inserts value into the heap.
         '''
+
         if self.root is None:
             self.root = Node(value)
             self.root.descendents = 1
@@ -89,26 +90,12 @@ class Heap(BinaryTree):
         FIXME:
         Implement this function.
         '''
+        #_input function created below
+
+
+
         Heap._input(value, node)
 
-
-    @staticmethod
-    def size(node):
-
-        if node is None:
-            return 0
-        stack=[]
-        stack.append(node)
-        size=1
-        while stack:
-            node=stack.pop()
-            if node.left:
-                size+=1
-                stack.append(node.left)
-            if node.right:
-                size+=1
-                stack.append(node.right)
-        return size
 
     @staticmethod
     def _input(value, node):
@@ -125,8 +112,8 @@ class Heap(BinaryTree):
             node.right = new_node
 
         else:
-            left = Heap.size(node.left)
-            right = Heap.size(node.right)
+            left = Heap.s1(node.left)
+            right = Heap.s1(node.right)
             new_node = node.left if left <= right else node.right
             new_node = Heap._input(value, new_node)
 
@@ -163,12 +150,7 @@ class Heap(BinaryTree):
         if Heap.is_heap_satisfied(self):
             return self.root.value
 
-    @staticmethod
-    def _find_smallest(node):
-        if node is None:
-            return
-        else:
-            return node.value
+    
 
 
     def remove_min(self):
@@ -197,8 +179,8 @@ class Heap(BinaryTree):
             val = node.left.value
             return val
         else:
-            left = Heap.size(node.left)
-            right = Heap.size(node.right)
+            left = Heap.s1(node.left)
+            right = Heap.s1(node.right)
 
             if left > right:
                 return Heap._last_val(node.left)
@@ -214,8 +196,8 @@ class Heap(BinaryTree):
         elif node.right.value == "alt method":
             node.right = None
         else:
-            left = Heap.size(node.left)
-            right = Heap.size(node.right)
+            left = Heap.s1(node.left)
+            right = Heap.s1(node.right)
             if left > right:
                 return Heap._alt_solution(node.left)
             else:
@@ -230,13 +212,19 @@ class Heap(BinaryTree):
             node.left = None
             return node
         else:
-            left = Heap.size(node.left)
-            right = Heap.size(node.right)
+            left = Heap.s1(node.left)
+            right = Heap.s1(node.right)
             if left > right:
                 return Heap._find_last_val(node.left)
             else:
                 return Heap._find_last_val(node.right)
 
+    @staticmethod
+    def _find_smallest(node):
+        if node is None:
+            return
+        else:
+            return node.value
 
     @staticmethod
     def _replace(node):
@@ -247,6 +235,24 @@ class Heap(BinaryTree):
         Heap._trickle_down(node.value, node)
 
         return node
+
+    @staticmethod
+    def s1(node):
+
+        if node is None:
+            return 0
+        stack=[]
+        stack.append(node)
+        s1=1
+        while stack:
+            node=stack.pop()
+            if node.left:
+                s1+=1
+                stack.append(node.left)
+            if node.right:
+                s1+=1
+                stack.append(node.right)
+        return s1
 
     @staticmethod
     def _trickle_down(value, node):
