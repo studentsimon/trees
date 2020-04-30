@@ -1,4 +1,5 @@
-
+'''
+'''
 
 from Trees.BinaryTree import BinaryTree, Node
 
@@ -159,8 +160,7 @@ class Heap(BinaryTree):
         Create a recursive staticmethod helper function,
         similar to how the insert and find functions have recursive helpers.
         '''
-        
-
+        if Heap.is_heap_satisfied(self):
             return self.root.value
 
     @staticmethod
