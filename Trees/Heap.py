@@ -212,7 +212,7 @@ class Heap(BinaryTree):
         Heap._find_last_val(node)
         node.value = val
         Heap._alt_solution(node)
-        Heap._trickle_down(node.value, node)
+        Heap.t1(node.value, node)
 
         return node
 
@@ -234,8 +234,10 @@ class Heap(BinaryTree):
                 stack.append(node.right)
         return s1
 
+
+    #had help from Shashank here also
     @staticmethod
-    def _trickle_down(value, node):
+    def t1(value, node):
         if Heap._is_heap_satisfied(node):
             return
         else:
@@ -254,10 +256,10 @@ class Heap(BinaryTree):
                     tmp_node = node.value
                     node.value = node.left.value
                     node.left.value = tmp_node
-                    return Heap._trickle_down(value, node.left)
+                    return Heap.t1(value, node.left)
 
                 else:
                     tmp_node = node.value
                     node.value = node.right.value
                     node.right.value = tmp_node
-                    return Heap._trickle_down(value, node.right)
+                    return Heap.t1(value, node.right)
