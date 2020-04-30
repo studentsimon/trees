@@ -261,7 +261,7 @@ class Heap(BinaryTree):
         Heap.td1(node.value, node)
 
         return node
-
+#had help from Shashank on this method area
     @staticmethod
     def td1(value, node):
         if Heap._is_heap_satisfied(node):
