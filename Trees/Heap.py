@@ -60,19 +60,20 @@ class Heap(BinaryTree):
         except that their method is an instance method when it should have been a static method.
         '''
         #from lecture notes:
+        if self.root:
 
-        if node is None or (node.left is None and node.right is None):
-            return True
+            if node is None or (node.left is None and node.right is None):
+                return True
 
-        elif node.right is None:
-            return node.value <= node.left.value
+            elif node.right is None:
+                return node.value <= node.left.value
 
-        elif node.value <= node.left.value and node.value <= node.right.value:
-            return Heap._is_heap_satisfied(node.left) and Heap._is_heap_satisfied(node.right)
+            elif node.value <= node.left.value and node.value <= node.right.value:
+                return Heap._is_heap_satisfied(node.left) and Heap._is_heap_satisfied(node.right)
 
-        else:
-            return False
-
+            else:
+                return False
+        return True
 
     def insert(self, value):
         '''
@@ -261,7 +262,7 @@ class Heap(BinaryTree):
         Heap.td1(node.value, node)
 
         return node
-#had help from Shashank on this method area
+
     @staticmethod
     def td1(value, node):
         if Heap._is_heap_satisfied(node):
